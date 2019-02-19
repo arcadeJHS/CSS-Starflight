@@ -1,0 +1,28 @@
+$debug: false;
+$scene-height: ($tile-height * length($background));
+
+.components {
+	display: none;
+	@if ($debug == true) {
+		display: block;
+	}
+
+	border: 1px solid #ccc;
+	position: relative;
+	top: 1em;
+	padding: 0.5em;
+	background-color: #efefef;
+	
+	> div {
+		display: inline-block;
+		font-size: 4px;
+		+ div {
+			margin-left: 1em;
+		}
+	}
+
+	> span {
+		position: absolute;
+    	top: 0;
+	}
+}

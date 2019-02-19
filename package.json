@@ -1,0 +1,16 @@
+{
+  "name": "css_starflight",
+  "version": "1.0.0",
+  "description": "An attempt to reproduce C=64 Starflight game screens with pure CSS animations",
+  "author": "matteo.piazza@gmail.com",
+  "license": "WTFPL",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.9.4"
+  },
+  "scripts": {
+    "compile:starflight": "node-sass --include-path sass src/main.scss distro.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

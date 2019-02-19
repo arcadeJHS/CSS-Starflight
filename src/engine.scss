@@ -1,0 +1,89 @@
+$font-size: 4px;
+$pixel-size: 1em!default;
+$tile-width: 16;
+$tile-height: 16;
+
+$colors: (
+	'a': #000000,
+	'b': #FFFFFF,
+	'c': #880000,
+	'd': #AAFFEE,
+	'e': #CC44CC,
+	'f': #00CC55,
+	'g': #0000AA,
+	'h': #EEEE77,
+	'i': #DD8855,
+	'j': #664400,
+	'k': #FF7777,
+	'l': #333333,
+	'm': #777777,
+	'n': #AAFF66, 
+	'o': #0088FF,
+	'p': #BBBBBB
+);
+
+@mixin shape-base($frames, $size) {
+	$width: str-length(nth(nth($frames, 1), 1));
+	$height: length($frames);
+	width: $width * $size;
+	height: $height * $size;	
+	position: relative;
+	&:after{
+		content: '';
+		position: absolute;
+		top: -$size;
+		left: -$size;
+		width: $size;
+		height: $size;
+	}
+}
+
+@mixin drawTiles($matrix, $size) {
+	$rowsCount: length($matrix);
+	$shadow: null;
+	@for $rowIdx from 1 through $rowsCount {
+		$row: nth($matrix, $rowIdx);
+		@for $charIdx from 1 through length($row) {
+			$tileKey: nth($row, $charIdx);
+			$shadow: append($shadow, draw-frame(map-get($tiles-string, $tileKey), $size, 1, ($charIdx - 1), ($rowIdx - 1)), comma);
+		}
+	}
+	box-shadow: $shadow;
+}
+
+
+@function draw-frame($frames, $size, $index: 1, $tileColumn: 0, $tileRow: 0) {
+	$box-shadow: null;
+	@for $i from 1 through length($frames) {
+	  $row: nth(nth($frames, $i), $index);
+	  @for $j from 1 through str-length($row) {
+		$pixel: str-slice($row, $j, $j);
+		$color: map-get($colors, $pixel);
+		@if $color != null {
+		  $x: ((($tileColumn * str-length($row)) + $j) * $size);
+		  $y: ((($tileRow * length($frames)) + $i) * $size);
+		  $box-shadow: append($box-shadow, $x $y $color, comma);
+		}
+	  }
+	}
+	@return $box-shadow;
+}
+
+@mixin draw-sprite($priteId, $sprite, $size, $speed: .25s) {
+	$frames-count: length(nth($sprite, 1));
+	@if ($frames-count == 1) {
+		box-shadow: draw-frame($sprite, $size);
+	}
+	@else {
+		// set animation keyframes
+		@keyframes #{$priteId}-frames {
+			@for $i from 1 through $frames-count {
+			  	#{100% / $frames-count * ($i - 1)} {
+					box-shadow: draw-frame($sprite, $size, $i);
+			  	}
+			}
+		}
+		// add animation
+		animation: #{$priteId}-frames $frames-count * $speed steps(1) infinite;
+	}
+}

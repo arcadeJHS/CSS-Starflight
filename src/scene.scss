@@ -1,0 +1,127 @@
+$scene-width: ($pixel-size * $tile-width * length(nth($background, 1)));
+$scene-height: ($pixel-size * $tile-height * length($background));
+$ratio: 1;
+$spider-pixel-size: $pixel-size / $ratio;
+$spider-width: ($pixel-size * length(nth(map-get($sprites, "E"),1)));
+$spider-height: ($pixel-size * length(map-get($sprites, "E")));
+
+@keyframes creep {
+	0% {
+		top: 0;
+	}
+	35% {
+		top: ($scene-height * $ratio)/2 + $spider-height;
+	}
+	40% {
+		top: ($scene-height * $ratio)/2 + $spider-height;
+	}
+	100% {
+		top: 0;
+	}
+}
+@keyframes web {
+	0% {
+		height: 1em;
+		top: 0;
+	}
+	35% {
+		height: 50em;
+		top: -50em;
+	}
+	40% {
+		height: 50em;
+		top: -50em;
+	}
+	100% {
+		height: 1em;
+		top: 0;
+	}
+}
+
+.scene {
+	position: relative;
+	box-sizing: content-box;
+	font-size: $font-size;
+	width: $scene-width;
+	height: $scene-height;
+
+	/*clip-path: circle(25% at 25% 25%);*/
+
+	.sprite--D {
+		position: absolute;
+    	left: 16em;
+		top: 12em;
+		&:before {
+			content: "starport";
+			color: #fff;
+			font-size: 2.5em;
+			position: relative;
+			left: 0;
+			top: -2em;
+			text-transform: uppercase;
+			display: block;
+			text-align: center;
+		}
+	}
+
+	.sprite--C {
+		position: absolute;
+    	left: 144em;
+		top: 28em;
+		&:before {
+			content: "operations";
+			color: #fff;
+			font-size: 2.5em;
+			position: relative;
+			left: 0;
+			top: -2em;
+			text-transform: uppercase;
+			display: block;
+			text-align: center;
+		}
+	}
+
+	.sprite--F {
+		position: absolute;
+		top: 58em;
+		left: 80em;
+		&:before {
+			content: "What the fuck?";
+			font-size: 2em;
+			position: relative;
+			left: 5em;
+			top: -3em;
+			background-color: #fff;
+			display: block;
+			border-radius: 6px;
+			padding: 0.4em 0.8em;
+			width: 8em;
+			text-align: center;
+		}
+	}
+
+	.sprite--E {
+		position: absolute;
+		font-size: $spider-pixel-size;
+		animation: creep 5s infinite;
+		left: 115em;
+		&:before {
+			content: '';
+			width: 0.5em;
+			height: 1em;
+			position: absolute;
+			left: 2em;
+			box-shadow: 1em 1em #BBBBBB;
+			animation: web 5s infinite;
+		}
+		/*
+		&:before {
+			content: "oooOOO!!!";
+			font-size: 2em;
+			position: relative;
+			left: $spider-width / $ratio;
+			padding-left: 5px;
+		}
+		*/
+	}
+}

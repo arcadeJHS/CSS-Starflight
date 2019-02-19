@@ -1,0 +1,51 @@
+$tiles-string: (	
+	// wall
+	A: (
+		"mmppppppppppppmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppggggggggggggmm",
+		"ppmmmmmmmmmmmmmm"
+	),
+	// floor
+	B: (
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd",
+		"dddddddddddddddd"
+	)
+);
+
+.tile {
+	@each $key, $tile in $tiles-string {
+		&--#{$key} {
+			@include shape-base($tile, $pixel-size);
+			&:after{
+				@include draw-sprite($key, $tile, $pixel-size);
+			}
+		}
+	}
+}

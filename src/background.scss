@@ -1,0 +1,26 @@
+// uses tiles defined in tiles.scss
+$background: (
+	(A A A A A A A A A A A)
+	(A A A A A A A A A A A)
+	(A A A A A A A A A A A)
+	(B B B B B B B B B B B)
+	(B B B B B B B B B B B)
+);
+
+.background {
+	position: relative;
+	box-sizing: content-box;
+	font-size: $font-size;
+	width:($pixel-size * $tile-width * length(nth($background, 1)));
+	height:($pixel-size * $tile-height * length($background));
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: (-$pixel-size);
+ 		left: (-$pixel-size);
+ 		width: $pixel-size;
+ 		height: $pixel-size;
+		@include drawTiles($background, $pixel-size);
+	}
+}

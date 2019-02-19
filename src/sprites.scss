@@ -1,0 +1,114 @@
+$sprites: (
+	// small door
+	C: (
+		"      aaaaaaaaaa      ",
+		"      aaaaaaaaaa      ",
+		"    aammmmaammmmaa    ",
+		"    aammmmaammmmaa    ",
+		"  aammmmmmaammmmmmaa  ",
+		"  aammmmmmaammmmmmaa  ",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"aammmmmmmmaammmmmmmmaa",
+		"    oooooooooooooo    ",
+		"    oooooooooooooo    ",
+		"  oooooooooooooooooo  ",
+		"  oooooooooooooooooo  ",
+		"oooooooooooooooooooooo",
+		"oooooooooooooooooooooo"
+	),
+	// big door
+	D: (
+		"ttttttttttaaaaaaaaaaaaaaaaaaaaatttttttttt",
+		"ttttttttttaaaaaaaaaaaaaaaaaaaaatttttttttt",
+		"ttttttttaammmmmmmmmmaammmmmmmmmaatttttttt",
+		"ttttttttaammmmmmmmmmaammmmmmmmmaatttttttt",
+		"ttttttaammmmmmmmmmmmammmmmmmmmmmmaatttttt",
+		"ttttttaammmmmmmmmmmmammmmmmmmmmmmaatttttt",
+		"ttttaammmmmmmmmmmmmmammmmmmmmmmmmmmaatttt",
+		"ttttaammmmmmmmmmmmmmammmmmmmmmmmmmmaatttt",
+		"ttaammmmmmmmmmmmmmmmammmmmmmmmmmmmmmmaatt",
+		"ttaammmmmmmmmmmmmmmmammmmmmmmmmmmmmmmaatt",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"aammmmmmmmmmmmmmmmmmammmmmmmmmmmmmmmmmmaa",
+		"ttaammmmmmmmmmmmmmmmammmmmmmmmmmmmmmmaatt",
+		"ttaammmmmmmmmmmmmmmmammmmmmmmmmmmmmmmaatt",
+		"ttttaammmmmmmmmmmmmmammmmmmmmmmmmmmaatttt",
+		"ttttaammmmmmmmmmmmmmammmmmmmmmmmmmmaatttt",
+		"ttttttaammmmmmmmmmmmammmmmmmmmmmmaatttttt",
+		"ttttttaammmmmmmmmmmmammmmmmmmmmmmaatttttt",
+		"ttttttttaammmmmmmmmmaammmmmmmmmaatttttttt",
+		"ttttttttaammmmmmmmmmaammmmmmmmmaatttttttt",
+		"ttttttttttaaaaaaaaaaaaaaaaaaaaatttttttttt",
+		"ttttttttttaaaaaaaaaaaaaaaaaaaaatttttttttt",
+		"ttttttttoooooooooooooooooooooooootttttttt",
+		"ttttttttoooooooooooooooooooooooootttttttt",
+		"ttttoooooooooooooooooooooooooooooooootttt",
+		"ttttoooooooooooooooooooooooooooooooootttt",
+		"ooooooooooooooooooooooooooooooooooooooooo",
+		"ooooooooooooooooooooooooooooooooooooooooo"
+	),
+	// spider
+	E: (
+		"  aaaa  " "  aaaa  ",
+		" aaaaaa " " aaaaaa ",
+		" abbabb " " abbabb ",
+		" aaaaaa " " aaaaaa ",
+		" aaabaa " " aaabaa ",
+	 	"  aaaa  " "  aaaa  ",
+		" aa  aa " "aaa  aaa",
+		"a a  a a" "a a  a a",
+		"a a  a a" "        "
+	),
+	//pilot
+	F: (
+		"    bbbbbb    " "    bbbbbb    ",
+		"  bbbbbbbbbb  " "  bbbbbbbbbb  ",
+		"  bbaaaaaabb  " "  bbaaaaaabb  ",
+		"  bbaaaaaabb  " "  bbaaaaaabb  ",
+		"    bbbbbb    " "    bbbbbb    ",
+		"              " "              ",
+		"  bbbbbbbbbb  " "  bbbbbbbbbb  ",
+		"bb  bbbbbb  bb" "bb  bbbbbb  bb",
+		"  bbbbbbbbbb  " "  bbbbbbbbbb  ",
+		"    bb  bb    " "    bb  bb    ",
+		"    bb  bb    " "  bbbb  bb    ",
+		"  bbbb  bbbb  " "    bb  bbbb  "
+	)
+);
+
+.sprite {
+	@each $key, $sprite in $sprites {
+		&--#{$key} {
+			@include shape-base($sprite, $pixel-size);
+			&:after{
+				@include draw-sprite($key, $sprite, $pixel-size);
+			}
+		}
+	}
+}
