@@ -47,7 +47,7 @@ html, body {
 .background {
   position: relative;
   box-sizing: content-box;
-  font-size: 6px;
+  font-size: 4px;
   width: 176em;
   height: 80em; }
   .background:after {
@@ -154,7 +154,7 @@ html, body {
 .scene {
   position: relative;
   box-sizing: content-box;
-  font-size: 6px;
+  font-size: 4px;
   width: 176em;
   height: 80em;
   /*clip-path: circle(25% at 25% 25%);*/ }
