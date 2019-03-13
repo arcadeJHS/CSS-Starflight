@@ -1,7 +1,6 @@
-$debug: false;
 $scene-height: ($tile-height * length($background));
 
-.components {
+.debug-components {
 	display: none;
 	@if ($debug == true) {
 		display: block;
